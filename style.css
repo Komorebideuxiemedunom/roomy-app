@@ -1,7 +1,41 @@
-:root{--bg:#F6F7FB;--ink:#14152B;--muted:#6B6F80;--accent:#5A57F4;--card:#fff}
-@media (prefers-color-scheme:dark){:root{--bg:#0F101E;--ink:#F3F1EC;--muted:#A8ABB8;--card:#1B1E2E}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-main{max-width:720px;margin:0 auto;padding:48px 20px}img.icon{width:96px;height:96px;border-radius:22px;box-shadow:0 8px 24px rgba(0,0,0,.15)}
-h1{font-size:34px;margin:20px 0 6px}h2{font-size:21px;margin-top:32px}p,li{color:var(--muted)}a{color:var(--accent)}
-.card{background:var(--card);border-radius:20px;padding:20px 22px;margin:22px 0;box-shadow:0 4px 16px rgba(0,0,0,.05)}
-footer{margin-top:40px;font-size:14px;color:var(--muted)}
+/* Roomy : de la place, honnêtement. Red Hat Display, menthe sombre, la barre de stockage en signature. Échelle de 8 px. */
+@font-face{font-family:"Red Hat Display";src:url(fonts/red-hat-display.woff2) format("woff2");font-weight:300 900;font-display:swap}
+:root{--bg:#EEF3F1;--ink:#0C1F1C;--muted:#3E524D;--accent:#0B6E55;--libre:#2FBF8F;--trait:#CFDAD6;--card:#EEF3F1;
+  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s6:48px;--s8:64px;--s12:96px}
+@media (prefers-color-scheme:dark){:root{--bg:#0B1513;--ink:#E8F1EE;--muted:#A9BAB5;--accent:#45D6A8;--libre:#45D6A8;--trait:#22322E;--card:#0B1513}}
+*{box-sizing:border-box}html{background:var(--bg)}
+body{margin:0;color:var(--ink);font:400 18px/1.6 "Red Hat Display",system-ui,sans-serif}
+main{max-width:1080px;margin:0 auto;padding:var(--s4) var(--s3) var(--s8)}
+a{color:var(--accent);text-underline-offset:3px}a:hover,a:focus-visible{color:var(--ink);text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+p,li{color:var(--muted);max-width:64ch}strong{color:var(--ink);font-weight:700}
+.marque{display:inline-flex;align-items:center;gap:12px;color:var(--ink);text-decoration:none;font-weight:800;margin-bottom:var(--s8)}
+.marque img{width:36px;height:36px;border-radius:9px}
+h1{font-weight:800;font-size:clamp(40px,6vw,72px);line-height:1;letter-spacing:-.03em;margin:0 0 var(--s3);max-width:18ch}
+h1.geant{font-weight:900;font-size:clamp(80px,16vw,208px);line-height:.84;letter-spacing:-.055em}
+h2{font-weight:800;font-size:clamp(22px,2.6vw,32px);line-height:1.1;letter-spacing:-.02em;margin:var(--s6) 0 var(--s2)}
+.card{background:none;border-top:2px solid var(--ink);padding:var(--s3) 0;margin:var(--s4) 0}
+footer{margin-top:var(--s8);padding-top:var(--s3);border-top:1px solid var(--trait);font-size:15px;color:var(--muted)}
+.chapeau{font-size:clamp(20px,2.2vw,26px);line-height:1.4;color:var(--ink);max-width:36ch;margin:0}
+
+/* La barre de stockage : la signature de Roomy */
+.stockage{margin:var(--s6) 0 var(--s8)}
+.barre{display:flex;height:clamp(64px,9vw,112px);border:2px solid var(--ink)}
+.barre span{display:block;height:100%}
+.garde{background:var(--ink)}
+.trop{background:repeating-linear-gradient(135deg,var(--ink) 0 3px,transparent 3px 12px)}
+.libre{background:var(--libre)}
+.barre .garde{width:46%}.barre .trop{width:30%}.barre .libre{width:24%}
+.stockage ul{list-style:none;margin:var(--s2) 0 0;padding:0;display:flex;flex-wrap:wrap;gap:var(--s1) var(--s4);font-size:16px}
+.stockage li{color:var(--ink);display:flex;align-items:center;gap:var(--s1);max-width:none}
+.stockage li i{display:inline-block;width:18px;height:18px;border:2px solid var(--ink)}
+.stockage li i.trop{background:repeating-linear-gradient(135deg,var(--ink) 0 2px,transparent 2px 6px)}
+.etapes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:2px solid var(--ink)}
+.etapes li{max-width:none;padding:var(--s3) var(--s3) var(--s3) 0;border-right:1px solid var(--trait)}
+.etapes li+li{padding-left:var(--s3)}.etapes li:last-child{border-right:0}
+.etapes b{display:block;font-size:56px;font-weight:900;line-height:1;letter-spacing:-.04em;color:var(--accent);margin-bottom:var(--s1)}
+.etapes strong{display:block;font-size:22px;margin-bottom:4px}
+.faq{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:var(--s1) var(--s6);border-top:1px solid var(--trait);padding:var(--s3) 0}
+.faq h3{margin:0;font-size:20px;line-height:1.25;font-weight:800}.faq p{margin:0}
+@media (max-width:760px){main{padding:var(--s3) var(--s2) var(--s6)}.marque{margin-bottom:var(--s6)}.faq,.etapes{grid-template-columns:1fr}.etapes li,.etapes li+li{padding:var(--s3) 0;border-right:0;border-bottom:1px solid var(--trait)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
